@@ -1,9 +1,22 @@
 #pragma once
 
-#include <list>
 #include <memory>
+#include <vector>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
-class MouseCtr;
+#include "VECTOR2.h"
+
+//class MouseCtr;
+
+typedef struct
+{
+	//マップの当たり判定ベクトル用
+	VECTOR2 vecA;
+	VECTOR2 vecB;		
+}VEC2_2;
 
 class GameTask
 {
@@ -13,8 +26,12 @@ public:
 		return *s_Instance;
 	};
 	void Run();
-	// 返り値 0b0001:左ボタン,0b0010:右ボタン,0b0100:中ボタン
-	void UpDate(const MouseCtr& mouseCtr);
+	void SystemInit();
+
+	// -----CSV読み込み
+
+	// ベクトル格納用
+	bool LoadCSV(std::string filename, std::vector <VEC2_2> data);
 
 private:
 	struct GameTaskDeleter
@@ -26,22 +43,11 @@ private:
 	};
 
 	static std::unique_ptr<GameTask, GameTaskDeleter> s_Instance;
-
+	//std::unique_ptr<MouseCtr> Mouse;
 	GameTask();
 	~GameTask();
-	void Init();
-	void Title();
+	void (GameTask::*CurrentScene)();
 	void GameMain();
 
-	void CreateNewBoard();
-
-	// ユニークポインタ
-	std::unique_ptr<MouseCtr> Mouse;
-
-	void (GameTask::*CurrentScene)();
-
-	int mouseFlg;
-	int mouseOld;
+	std::vector <VEC2_2> maphit;
 };
-
-
