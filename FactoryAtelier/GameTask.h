@@ -32,6 +32,7 @@ public:
 
 	// ƒxƒNƒgƒ‹Ši”[—p
 	bool LoadCSV(std::string filename, std::vector <VEC2_2> data);
+	bool LoadCSV(std::string filename, std::vector <VECTOR2> data);
 
 private:
 	struct GameTaskDeleter
@@ -49,5 +50,5 @@ private:
 	void (GameTask::*CurrentScene)();
 	void GameMain();
 
-	std::vector <VEC2_2> maphit;
+	std::vector <VECTOR2> maphit;
 };
