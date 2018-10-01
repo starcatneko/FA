@@ -28,7 +28,6 @@ void GameTask::Run()
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == false)
 	{
 
-
 		ScreenFlip();
 		ClsDrawScreen();
 

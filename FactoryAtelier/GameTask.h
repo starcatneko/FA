@@ -1,5 +1,8 @@
 #pragma once
 
+class MouseCtr;
+
+#include <list>
 #include <memory>
 #include <vector>
 #include <string>
@@ -8,8 +11,6 @@
 #include <sstream>
 
 #include "VECTOR2.h"
-
-//class MouseCtr;
 
 typedef struct
 {
@@ -44,11 +45,11 @@ private:
 	};
 
 	static std::unique_ptr<GameTask, GameTaskDeleter> s_Instance;
-	//std::unique_ptr<MouseCtr> Mouse;
+	std::unique_ptr<MouseCtr> Mouse;
+
 	GameTask();
 	~GameTask();
 	void (GameTask::*CurrentScene)();
 	void GameMain();
-
 	std::vector <VECTOR2> maphit;
 };
