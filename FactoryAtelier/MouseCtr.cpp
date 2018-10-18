@@ -21,10 +21,8 @@ bool MouseCtr::HitRange(VECTOR2 pos, VECTOR2 size)
 {
 	VECTOR2 p = this->pos;
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 88);
-	DrawBox(pos.x, pos.y,
-		pos.x + size.x,
-		pos.y + size.y,
-		0x00DD00, true);
+	DrawBox(pos.x, pos.y,pos.x + size.x,
+		pos.y + size.y,0x00DD00, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	if (p > pos&&
 		p < pos + size)
@@ -70,11 +68,7 @@ void MouseCtr::Update()
 	return ;
 }
 
-bool MouseCtr::Check(int short checkflg)
+bool MouseCtr::Check(touch_type type)
 {
-	if (flg[NEW] & checkflg && !(flg[NEW] & flg[OLD]))
-	{
-		return true;
-	}
 	return false;
 }

@@ -5,8 +5,10 @@
 #define MOUSE MouseCtr::GetInstance()
 enum touch_type
 {
-	NEW ,
-	OLD ,
+	NUETRAL,
+	TOUCH,
+	PRESS,
+	RELEASE,
 	TOUCH_TYPE
 };
 enum button_type
@@ -30,7 +32,7 @@ public:
 	bool HitRange(VECTOR2 pos, VECTOR2 size);
 
 	void Update();
-	bool Check(int short checkflg);
+	bool Check(touch_type type);
 private:
 	struct MouseCtrDeleter
 	{
@@ -46,6 +48,6 @@ private:
 
 	VECTOR2 pos;
 
-	short int flg[TOUCH_TYPE];
+	short int pressCnt[BUTTON_TYPE];
 };
 
