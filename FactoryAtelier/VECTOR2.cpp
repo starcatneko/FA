@@ -17,6 +17,30 @@ bool VECTOR2::operator==(const VECTOR2 & vec) const
 			this->y == vec.y);
 }
 
+bool VECTOR2::operator<(const VECTOR2 & vec) const
+{
+	return (this->x < vec.x &&
+			this->y < vec.y);
+}
+
+bool VECTOR2::operator>(const VECTOR2 & vec) const
+{
+	return (this->x > vec.x &&
+			this->y > vec.y);
+}
+
+bool VECTOR2::operator<=(const VECTOR2 & vec) const
+{
+	return (this->x <= vec.x &&
+			this->y <= vec.y);
+}
+
+bool VECTOR2::operator>=(const VECTOR2 & vec) const
+{
+	return (this->x >= vec.x &&
+			this->y >= vec.y);
+}
+
 bool VECTOR2::operator!=(const VECTOR2 & vec) const
 {
 	return (this->x != vec.x ||

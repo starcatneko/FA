@@ -10,6 +10,10 @@ public:
 
 	//”äŠr‰‰Zq
 	bool operator == (const VECTOR2& vec) const;
+	bool operator < (const VECTOR2& vec) const;
+	bool operator > (const VECTOR2& vec) const;
+	bool operator <= (const VECTOR2& vec) const;
+	bool operator >= (const VECTOR2& vec) const;
 	bool operator != (const VECTOR2& vec) const;
 	
 	//’P€‰‰Zq

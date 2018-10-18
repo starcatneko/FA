@@ -1,6 +1,6 @@
 #include "DxLib.h"
 #include "GameTask.h"
-
+#include "MouseCtr.h"
 #define SCREEN_SIZE_X 960
 #define SCREEN_SIZE_Y 640
 
@@ -30,7 +30,7 @@ void GameTask::Run()
 
 		ScreenFlip();
 		ClsDrawScreen();
-
+		MOUSE.HitRange({ 0,0 }, { 300, 300 });
 		(this->*CurrentScene)();
 	}
 

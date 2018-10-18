@@ -1,14 +1,40 @@
 #include "MouseCtr.h"
 #include "DxLib.h"
 
+std::unique_ptr<MouseCtr, MouseCtr::MouseCtrDeleter> MouseCtr::s_Instance(new MouseCtr());
+
 MouseCtr::MouseCtr()
 {
-
+	
 }
 
 MouseCtr::~MouseCtr()
 {
 }
+
+VECTOR2 MouseCtr::GetPos()
+{
+	return this->pos;
+}
+
+bool MouseCtr::HitRange(VECTOR2 pos, VECTOR2 size)
+{
+	VECTOR2 p = this->pos;
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 88);
+	DrawBox(pos.x, pos.y,
+		pos.x + size.x,
+		pos.y + size.y,
+		0x00DD00, true);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	if (p > pos&&
+		p < pos + size)
+	{
+		return true;
+	}
+	return false;
+}
+
+
 
 void MouseCtr::Update()
 {
@@ -35,6 +61,12 @@ void MouseCtr::Update()
 		}
 		break;
 	}
+
+	VECTOR2 v;
+	GetMousePoint(&v.x, &v.y);
+	this->pos = v;
+
+
 	return ;
 }
 

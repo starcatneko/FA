@@ -45,7 +45,7 @@ private:
 	};
 
 	static std::unique_ptr<GameTask, GameTaskDeleter> s_Instance;
-	std::unique_ptr<MouseCtr> Mouse;
+	//std::unique_ptr<MouseCtr> Mouse;
 
 	GameTask();
 	~GameTask();
