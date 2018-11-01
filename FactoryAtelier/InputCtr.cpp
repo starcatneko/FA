@@ -1,28 +1,31 @@
-#include "MouseCtr.h"
+#include "InputCtr.h"
 #include "DxLib.h"
 
-std::unique_ptr<MouseCtr, MouseCtr::MouseCtrDeleter> MouseCtr::s_Instance(new MouseCtr());
+std::unique_ptr<InputCtr, InputCtr::MouseCtrDeleter> InputCtr::s_Instance(new InputCtr());
 
-MouseCtr::MouseCtr()
+InputCtr::InputCtr()
 {
 	
 }
 
-MouseCtr::~MouseCtr()
+InputCtr::~InputCtr()
 {
 }
 
-VECTOR2 MouseCtr::GetPos()
+VECTOR2 InputCtr::GetPos()
 {
 	return this->pos;
 }
 
-bool MouseCtr::HitRange(VECTOR2 pos, VECTOR2 size)
+bool InputCtr::HitRange(VECTOR2 pos, VECTOR2 size)
 {
+
+
+
 	VECTOR2 p = this->pos;
 	if (p > pos&&
 		p < pos + size
-		&& pressCnt[LEFT] == 1)
+		&& pressCnt[MOUSE_INPUT_LEFT] == 1)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 88);
 		DrawBox(pos.x, pos.y, pos.x + size.x,
@@ -31,6 +34,16 @@ bool MouseCtr::HitRange(VECTOR2 pos, VECTOR2 size)
 
 
 		return true;
+	}
+	else if (p > pos&&
+		p < pos + size
+		&& pressCnt[MOUSE_INPUT_RIGHT] == 1)
+	{
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 88);
+	DrawBox(pos.x, pos.y, pos.x + size.x,
+		pos.y + size.y, 0x0000DD, true);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	return true;
 	}
 	else
 	{
@@ -44,54 +57,70 @@ bool MouseCtr::HitRange(VECTOR2 pos, VECTOR2 size)
 	return false;
 }
 
-
-
-void MouseCtr::Update()
+int InputCtr::KeyButton(int ButtonType)
 {
-	/*
-	short int temp_pressCnt = 0;
-	switch (GetMouseInput())
-	{
-	case MOUSE_INPUT_LEFT:
-		pressCnt[LEFT]++;
-		break;
-	case MOUSE_INPUT_RIGHT:
-		pressCnt[RIGHT]++;
-		break;
-	case MOUSE_INPUT_MIDDLE:
-		pressCnt[MIDDLE]++;
+	DrawFormatString(ButtonType>>8*10, ButtonType *10,
+		0xffffff, "%d", pressCnt[ButtonType << 16]);
 
-		break;
-	}
-	*/
-	if (GetMouseInput() == MOUSE_INPUT_LEFT)
+	if (CheckHitKey(ButtonType) == 1)
 	{
-		pressCnt[LEFT]++;
+		{
+			pressCnt[ButtonType<<16]++;
+		}
 	}
-	else if(pressCnt[LEFT] > 0)
+	else if (pressCnt[ButtonType << 16] > 0)
 	{
-		pressCnt[LEFT] = -1;
+		pressCnt[ButtonType << 16] = -1;
 	}
 	else
 	{
-		pressCnt[LEFT] = 0;
+		pressCnt[ButtonType << 16] = 0;
 
 	}
+	return pressCnt[ButtonType << 16];
 
 
+}
+
+
+int InputCtr::MouseButton(int ButtonType)
+{
+	DrawFormatString(480, ButtonType * 32,
+		0xffffff, "%d", pressCnt[ButtonType]);
+
+	if (GetMouseInput() & ButtonType)
+	{
+		pressCnt[ButtonType]++;
+	}
+	else if (pressCnt[ButtonType] > 0)
+	{
+		pressCnt[ButtonType] = -1;
+	}
+	else
+	{
+		pressCnt[ButtonType] = 0;
+
+	}
+	return pressCnt[ButtonType];
+}
+
+void InputCtr::Update()
+{
+	
+	/*
 	for (auto itr : pressCnt)
 	{
 		//if (itr
 			//pressCnt[itr];
 	}
-
+	*/
 	GetMousePoint(&this->pos.x, &this->pos.y);
 
 
 	return ;
 }
 
-bool MouseCtr::Check(touch_type type)
+bool InputCtr::Check(touch_type type)
 {
 	return false;
 }

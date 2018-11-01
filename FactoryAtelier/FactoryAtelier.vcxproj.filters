@@ -9,7 +9,7 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\MOB">
+    <Filter Include="ソース ファイル\キャラクター">
       <UniqueIdentifier>{2bce9846-1dbd-48cc-960a-0521ce20eaf5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -26,10 +26,13 @@
     <ClCompile Include="VECTOR2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="MouseCtr.cpp">
+    <ClCompile Include="FileRW.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="FileRW.cpp">
+    <ClCompile Include="InputCtr.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CharcterBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -43,10 +46,13 @@
     <ClInclude Include="VECTOR2.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MouseCtr.h">
+    <ClInclude Include="FileRW.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FileRW.h">
+    <ClInclude Include="InputCtr.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CharcterBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

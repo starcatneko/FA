@@ -1,6 +1,6 @@
 #pragma once
 
-class MouseCtr;
+class InputCtr;
 
 #include <list>
 #include <memory>

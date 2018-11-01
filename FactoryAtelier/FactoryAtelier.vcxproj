@@ -19,18 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CharcterBase.cpp" />
     <ClCompile Include="FileRW.cpp" />
     <ClCompile Include="GameTask.cpp" />
     <ClCompile Include="ImageMng.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MouseCtr.cpp" />
+    <ClCompile Include="InputCtr.cpp" />
     <ClCompile Include="VECTOR2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CharcterBase.h" />
     <ClInclude Include="FileRW.h" />
     <ClInclude Include="GameTask.h" />
     <ClInclude Include="ImageMng.h" />
-    <ClInclude Include="MouseCtr.h" />
+    <ClInclude Include="InputCtr.h" />
     <ClInclude Include="VECTOR2.h" />
   </ItemGroup>
   <ItemGroup>
