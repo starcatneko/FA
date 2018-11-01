@@ -30,6 +30,7 @@ void GameTask::Run()
 
 		ScreenFlip();
 		ClsDrawScreen();
+		MOUSE.Update();
 		MOUSE.HitRange({ 0,0 }, { 300, 300 });
 		(this->*CurrentScene)();
 	}
